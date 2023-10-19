@@ -1,0 +1,145 @@
+<html>
+  <head>
+    <title>Flames</title>
+    <link rel="icon" href="img/myicon.ico.ico">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="flam">
+      <table>
+        <tr>
+          <td><img class="weltopimg" src="img/welcome.gif" alt="welcome" title="welcome to bj"> </td>
+          <td>
+  <h1 > to BJ FLAMES</h1>
+</td>
+</tr>
+</table>
+  <img class="welcomeimg" src="img/welrat.gif" alt="welcomgif" title="kar keer"><br><br>
+  <div class="input">
+  <label>Enter your name</label>
+    <input type='text' id='name1' ><br><br>
+    <label>Enter Your fav name</label>
+    <input type='text' id='name2' ><br><br>
+    <input type='button' value='Click' onclick='flames()'>
+    </div>
+    <h3><marquee id='output'></marquee></h3>
+    <p id="ans"></p><br><br>
+    <div class="perdiv">
+      <table>
+        <tr>
+          <td>
+    <p class="flmp">your love percent</p>
+    <h1><p id="per"></p></h1>
+  </td>
+    <td><img class="loveimg" src="img/giphy (1).gif" alt="loveghipy" title="balaji jega"></td>
+  </tr>  
+  </table>
+    </div>
+    
+    </div>
+  <script>
+    function replaceAt(string, index, replace) {
+      return string.substring(0, index) + replace + string.substring(index + 1);
+    }
+    function flames(){
+      var res=document.getElementById("output");
+      var a=document.getElementById("name1").value.toLowerCase();
+      var b=document.getElementById("name2").value.toLowerCase();
+      
+      if(a.length+b.length==18){
+                    document.getElementById("per").innerHTML=100+"%";
+                }
+                else if(a.length+b.length==10){
+                  document.getElementById("per").innerHTML=100+"%";
+                }
+                else if(a.length+b.length==22){
+                   document.getElementById('per').innerHTML=Math.floor(Math.random()*(100-90))+90+"%";
+                }
+                else{
+                   document.getElementById('per').innerHTML=Math.floor(Math.random()*(100-50))+50+"%";
+                }
+
+      if(a!=""&&b!=""){
+        for (i=0;i<a.length;i++){
+          for(j=0;j<b.length;j++){
+            if(a[i]==b[j]){
+              a=replaceAt(a,i,'*');
+              b=replaceAt(b,j,'*');
+            }
+          }
+        }
+        var countLetters=0;
+        for (i=0;i<a.length;i++){
+          if(a[i]!='*'){
+            countLetters++;
+          }
+        }
+        for (i=0;i<b.length;i++){
+          if(b[i]!='*'){
+            countLetters++;
+          }
+        }
+        if(countLetters>1){
+          var flames="FLAMES";
+          c=0;
+          l=1;
+          for(i=0;flames.length!=1;i++){
+            if(l==countLetters)
+            {
+              if(c>=flames.length)
+              {
+                c=0;
+              }
+              flames=replaceAt(flames,c,'');
+              l=1;
+            }  
+            if(c>=flames.length)
+            {
+              c=0;
+            }        
+            l++;
+            c++;
+          }
+          
+          switch(flames){
+            case 'F':
+              flames="Friend";
+              jb="Truly great friends are hard to find, difficult to leave, and impossible to forget.";
+              break;
+            case 'L':
+              flames="Love";
+              jb="To be your friend was all I ever wanted; to be your lover was all I ever dreamed.";
+              break;
+            case 'A':
+              flames="Affection";
+              jb="Affection is responsible for nine-tenths of whatever solid and durable happiness there is in our lives";
+              break;
+            case 'M':
+              flames="Marriage";
+              jb="The secret of a happy marriage is finding the right person. You know they're right if you love to be with them all the time";
+              break;
+            case 'E':
+              flames="Enemies";
+              jb="Always forgive your enemies; nothing annoys them so much";
+              break;
+            case 'S':
+              flames="Sibling";
+              jb="A sister can be seen as someone who is both ourselves and very much not ourselves—a special kind of double";
+              break;
+          }
+        }
+        if(countLetters==1){
+          flames="Sibling";
+        }
+        if(countLetters==0){
+          flames="Its Same Name";
+        }
+        res.innerHTML="<b style='color:green;'>"+document.getElementById("name2").value+"</b> is Your <b style='color:blue;'>"+flames+"</b>";
+        document.getElementById("ans").innerHTML=jb;
+      }else{
+        res.innerHTML="Please Enter Name";
+      }
+    }
+  </script>
+  </body>
+</html>
